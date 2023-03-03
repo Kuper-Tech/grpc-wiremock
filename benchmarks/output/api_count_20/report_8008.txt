@@ -1,0 +1,42 @@
+This is ApacheBench, Version 2.3 <$Revision: 1903618 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking wiremock (be patient).....done
+
+
+Server Software:        
+Server Hostname:        wiremock
+Server Port:            8008
+
+Document Path:          /HealthCheck
+Document Length:        7 bytes
+
+Concurrency Level:      10
+Time taken for tests:   1.779 seconds
+Complete requests:      100
+Failed requests:        0
+Total transferred:      14800 bytes
+HTML transferred:       700 bytes
+Requests per second:    56.21 [#/sec] (mean)
+Time per request:       177.905 [ms] (mean)
+Time per request:       17.791 [ms] (mean, across all concurrent requests)
+Transfer rate:          8.12 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   1.1      0       4
+Processing:     4  171 202.9     63     787
+Waiting:        2  158 191.6     56     787
+Total:          4  172 202.9     63     791
+
+Percentage of the requests served within a certain time (ms)
+  50%     63
+  66%    227
+  75%    276
+  80%    373
+  90%    488
+  95%    662
+  98%    770
+  99%    791
+ 100%    791 (longest request)

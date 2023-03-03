@@ -1,0 +1,39 @@
+services:
+  wiremock:
+    build:
+      context: .
+      dockerfile: Dockerfile-wiremock
+
+    environment:
+      - WIREMOCK_API_COUNT=${WIREMOCK_API_COUNT}
+
+    ports:
+      - "8000-8100:8000-8100"
+
+    volumes:
+      - type: bind
+        source: wiremock
+        target: /home/wiremock
+
+    healthcheck:
+      test: ["CMD-SHELL", "/scripts/health.sh || exit 1"]
+      interval: 1s
+      timeout: 10s
+      retries: 50
+
+  benchmarks:
+    build:
+      context: .
+      dockerfile: Dockerfile-benchmarks
+
+    environment:
+      - WIREMOCK_API_COUNT=${WIREMOCK_API_COUNT}
+
+    volumes:
+      - type: bind
+        source: output
+        target: /benchmarks/output
+
+    depends_on:
+      wiremock:
+        condition: service_healthy

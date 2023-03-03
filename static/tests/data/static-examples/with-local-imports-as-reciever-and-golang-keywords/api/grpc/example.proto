@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package example;
+
+option go_package = "gitlab.io/paas/example";
+
+import "go/custom.proto";
+import "fallthrough/fallthrough.proto";
+
+service Example {
+  rpc Unary(fallthrough.CustomFallthroughEmpty) returns (go.CustomEmpty);
+  rpc ClientSideStream(stream fallthrough.CustomFallthroughEmpty) returns (go.CustomEmpty);
+  rpc ServerSideStream(fallthrough.CustomFallthroughEmpty) returns (stream go.CustomEmpty);
+  rpc BidirectionalStream(stream fallthrough.CustomFallthroughEmpty) returns (stream go.CustomEmpty);
+}

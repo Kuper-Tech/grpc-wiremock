@@ -1,0 +1,11 @@
+generation:
+    skip:
+        - simple-1-flaky
+    success:
+        - simple-success
+    fail:
+        -  simple-2-fail
+
+run-some-fancy-test-name:
+    skip:
+        - flaky-test-1

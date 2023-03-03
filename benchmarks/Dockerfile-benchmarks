@@ -1,0 +1,20 @@
+ARG BASE_IMAGE_TAG="1.19"
+ARG BASE_IMAGE_REPO="registry.hub.docker.com/library"
+ARG BASE_IMAGE_NAME="golang"
+
+ARG WIREMOCK_API_COUNT
+
+FROM ${BASE_IMAGE_REPO}/${BASE_IMAGE_NAME}:${BASE_IMAGE_TAG}
+
+ENV WIREMOCK_API_COUNT=${WIREMOCK_API_COUNT}
+
+RUN apt-get update && apt-get install apache2-utils
+
+COPY scripts /benchmarks
+COPY Makefile /benchmarks/Makefile
+
+WORKDIR /benchmarks
+
+#RUN go mod init test && go mod tidy
+
+ENTRYPOINT ["make", "benchmark"]

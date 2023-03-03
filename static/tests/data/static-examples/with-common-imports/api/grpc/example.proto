@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package example;
+
+option go_package = "gitlab.io/paas/example";
+
+import "google/protobuf/empty.proto";
+
+message Request {
+  google.protobuf.Empty name = 1;
+}
+
+message Response {}
+
+service Example {
+  rpc Unary(Request) returns (Response);
+  rpc ClientSideStream(stream Request) returns (Response);
+  rpc ServerSideStream(Request) returns (stream Response);
+  rpc BidirectionalStream(stream Request) returns (stream Response);
+}

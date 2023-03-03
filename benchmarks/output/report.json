@@ -1,0 +1,32 @@
+[
+  {
+    "min_response_time_api_count_2": 59,
+    "max_response_time_api_count_2": 65,
+    "avg_response_time_api_count_2": 62,
+    "median_response_time_api_count_2": 65
+  },
+  {
+    "min_response_time_api_count_5": 122,
+    "max_response_time_api_count_5": 161,
+    "avg_response_time_api_count_5": 139,
+    "median_response_time_api_count_5": 140
+  },
+  {
+    "min_response_time_api_count_20": 355,
+    "max_response_time_api_count_20": 1149,
+    "avg_response_time_api_count_20": 688.35,
+    "median_response_time_api_count_20": 674
+  },
+  {
+    "min_response_time_api_count_10": 161,
+    "max_response_time_api_count_10": 415,
+    "avg_response_time_api_count_10": 275.4,
+    "median_response_time_api_count_10": 300
+  },
+  {
+    "min_response_time_api_count_1": 31,
+    "max_response_time_api_count_1": 31,
+    "avg_response_time_api_count_1": 31,
+    "median_response_time_api_count_1": 31
+  }
+]

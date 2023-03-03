@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package local;
+
+option go_package = "gitlab.io/paas/example/local";
+
+message CustomEmpty {}

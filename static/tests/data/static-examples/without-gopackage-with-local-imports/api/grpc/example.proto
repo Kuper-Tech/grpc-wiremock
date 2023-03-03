@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package example;
+
+import "another.proto";
+import "import/another.proto";
+
+message Request {}
+
+service Example {
+  rpc Unary(Request) returns (Response);
+  rpc ClientSideStream(stream Request) returns (Response);
+  rpc ServerSideStream(Request) returns (stream Response);
+  rpc BidirectionalStream(stream Request) returns (stream inner.AnotherResponse);
+}

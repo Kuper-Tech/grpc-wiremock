@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package import1;
+
+option go_package = "gitlab.io/paas/example/import";
+
+message CustomEmpty {}

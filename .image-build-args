@@ -1,0 +1,10 @@
+GOLANG_IMAGE_REPO="registry.hub.docker.com"
+GOLANG_IMAGE_NAME="library/golang"
+GOLANG_IMAGE_TAG="1.20.3"
+
+
+WIREMOCK_IMAGE_REPO="docker.io"
+WIREMOCK_IMAGE_NAME="wiremock/wiremock"
+WIREMOCK_IMAGE_TAG="2.32.0-alpine"
+
+# See COPYRIGHT file.

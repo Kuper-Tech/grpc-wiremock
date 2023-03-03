@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package fallthrough;
+
+option go_package = "gitlab.io/paas/example/fallthrough";
+
+message CustomFallthroughEmpty {}
