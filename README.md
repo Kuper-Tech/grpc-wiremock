@@ -44,7 +44,7 @@ docker run \
 In general, **grpc-wiremock** contains two main components. 
 
 You can read more about each of them here:
-- [mocks generator](docs/mocks.md) (**COMING SOON**);
+- [mocks generator](docs/mocks.md);
 - [grpc-to-http-proxy generator](docs/proxy.md).
 
 In the diagram you can see how your requests are distributed within the **grpc-wiremock** container.
