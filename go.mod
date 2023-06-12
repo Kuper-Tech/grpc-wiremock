@@ -3,6 +3,7 @@ module github.com/SberMarket-Tech/grpc-wiremock
 go 1.19
 
 require (
+	github.com/apicat/datagen v0.0.9
 	github.com/avast/retry-go/v4 v4.3.3
 	github.com/farmergreg/rfsnotify v0.0.0-20200716145600-b37be6e4177f
 	github.com/getkin/kin-openapi v0.113.0
