@@ -15,6 +15,7 @@ unit-tests:
 .PHONY: install-cli
 install-cli:
 	make install -C cmd/grpc2http
+	make install -C cmd/mockgen
 	make install -C cmd/confgen
 	make install -C cmd/watcher
 	make install -C cmd/certgen
