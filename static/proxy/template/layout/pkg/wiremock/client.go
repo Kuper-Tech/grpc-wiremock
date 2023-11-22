@@ -78,8 +78,13 @@ func DoRequestWithStreamSize(request *http.Request) ([]byte, int, error) {
 
 func doRequest(request *http.Request) (*http.Response, error) {
 	if md, ok := metadata.FromIncomingContext(request.Context()); ok {
-		if authority := md.Get(":authority"); len(authority) > 0 {
-			request.Host = authority[0]
+		for mdKey, mdValue := range md {
+			if len(mdValue) > 0 {
+				if mdKey == ":authority" {
+					request.Host = mdValue[0]
+				}
+				request.Header.Set(mdKey, mdValue[0])
+			}
 		}
 	}
 
