@@ -82,8 +82,9 @@ func doRequest(request *http.Request) (*http.Response, error) {
 			if len(mdValue) > 0 {
 				if mdKey == ":authority" {
 					request.Host = mdValue[0]
+				} else {
+					request.Header.Set(mdKey, mdValue[0])
 				}
-				request.Header.Set(mdKey, mdValue[0])
 			}
 		}
 	}
