@@ -23,10 +23,18 @@ var (
 	handledEvents []string
 )
 
+func resetHandledEvents() {
+	mu.Lock()
+	defer mu.Unlock()
+
+	handledEvents = []string{}
+}
+
 func defaultGreeter(_ context.Context, _, path string) error {
 	mu.Lock()
+	defer mu.Unlock()
+
 	handledEvents = append(handledEvents, path)
-	mu.Unlock()
 
 	// do something useful.
 
@@ -102,7 +110,7 @@ func TestWatchers_Watch(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			handledEvents = []string{}
+			resetHandledEvents()
 
 			err := prepareEnvironment(tt.watcherDesc.Path)
 			require.NoError(t, err)

@@ -1,6 +1,6 @@
 GOLANG_IMAGE_REPO="registry.hub.docker.com"
 GOLANG_IMAGE_NAME="library/golang"
-GOLANG_IMAGE_TAG="1.20.3"
+GOLANG_IMAGE_TAG="1.21.7"
 
 
 WIREMOCK_IMAGE_REPO="docker.io"

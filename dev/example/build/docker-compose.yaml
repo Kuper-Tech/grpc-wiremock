@@ -1,0 +1,89 @@
+version: "3"
+
+networks:
+  default:
+    name: wearable-network
+
+volumes:
+  wiremock-data:
+    driver: local
+
+services:
+
+  # Main app, depends on `push-sender`.
+  wearable:
+    container_name: wearable
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+
+    # To send requests from a host.
+    - target: 30103
+      published: 30103
+      protocol: tcp
+
+  # Container with grpc-wiremock, contains `push-sender` mock API.
+  wearable-mock:
+    container_name: wearable-mock
+    image: ${GRPC_WIREMOCK_IMAGE}
+    command: "sleep 10000"
+
+    # Ports shared with host.
+    ports:
+
+        # Supervisord web interface port.
+        # Available in browser http://localhost:9000.
+      - target: 9000
+        published: 9000
+        protocol: tcp
+
+        # grpc <-> http proxy port. Accepts plaintext requests.
+        # Example: `grpcurl --plaintext localhost:3010 list`.
+      - target: 3010
+        published: 3010
+        protocol: tcp
+
+        # grpc <-> http proxy port. Accepts secured requests.
+        # Example: `grpcurl localhost:3010 list`. TODO example
+      - target: 3009
+        published: 3009
+        protocol: tcp
+
+
+      - target: 443
+        published: 443
+        protocol: tcp
+
+      - target: 80
+        published: 80
+        protocol: tcp
+
+      - target: 8000
+        published: 8000
+        protocol: tcp
+
+      - target: 8001
+        published: 8001
+        protocol: tcp
+
+    volumes:
+      - type: bind
+        source: ../test/wiremock
+        target: /home/mock
+
+      - type: bind
+        source: ../deps
+        target: /contracts
+
+      - type: bind
+        source: /tmp/certs
+        target: /etc/ssl/mock/share
+
+      - type: volume
+        source: wiremock-data
+        target: /home/wiremock
+
+      - type: bind
+        source: ../../../
+        target: /source

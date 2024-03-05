@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package push_sender;
+
+option go_package = "github.com/nktch1/pkg/clients/push_sender";
+
+service PushSender {
+  rpc Notify(NotifyRequest) returns (NotifyResponse);
+}
+
+message NotifyRequest {
+  string uuid = 1;
+  string message = 2;
+}
+
+message NotifyResponse {
+  uint32 status  = 1;
+}
