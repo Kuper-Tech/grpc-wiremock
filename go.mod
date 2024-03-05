@@ -1,6 +1,6 @@
 module github.com/SberMarket-Tech/grpc-wiremock
 
-go 1.19
+go 1.21
 
 require (
 	github.com/apicat/datagen v0.0.9

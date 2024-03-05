@@ -54,5 +54,50 @@ In the diagram you can see how your requests are distributed within the **grpc-w
 ### Benchmarks
 You can also read about performance with multiple mock APIs [here](docs/benchmarks.md).
 
+# For developers
+
+## Dockerfile development
+To develop `Dockerfile` run `./dev/watch_build_image.sh`.
+It will monitor changes you'are adding to `Dockerfile` and rebuild local image
+with tag `docker.io/sbermarkettech/grpc-wiremock:dev`.
+
+## Golang code development
+To develop golang code
+
+1. Build `Dockerfile` once - run command:
+
+    ```
+    ./dev/build_image.sh
+    ```
+2. Start docker container based on the built image:
+
+    ```
+    make -C ./dev/example/ compose-up compose-logs
+    ```
+3. Log into docker container:
+
+    ```
+    make -C ./dev/example/ compose-exec
+    ```
+4. Change `dev/watch_wiremock.sh` for your needs,  
+    i.e. set `-build` command to rebuild and install grpc2http:
+
+    ```
+    CompileDaemon -color -log-prefix \
+        -build='make install -C cmd/grpc2http' \
+        -command='bash ./dev/init_wiremock.sh'
+    ```
+5. Run `./dev/watch_wiremock.sh`  inside docker container  
+    When you change code it will restart wiremock to new version of code
+
+6. Make a request to wiremock:
+
+    ```
+    grpcurl -H 'TestHeader: check' \
+        -insecure --authority  push-sender \
+        -d '{"uuid": "1234", "message": "foo"}' \
+        127.0.0.1:3009 push_sender.PushSender/Notify
+    ```
+
 ### License
 **grpc-wiremock** is under the Apache License, Version 2.0. See the LICENSE file for details.

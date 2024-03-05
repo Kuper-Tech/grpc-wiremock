@@ -8,12 +8,6 @@ PROXY_OUTPUT_PORT="80"
 PROXY_BASE_URL="${PROXY_HOST}:${PROXY_OUTPUT_PORT}"
 PROXY_OUTPUT_PATH="/var/proxy/proxy"
 
-# Kill previous proxy instance if exists.
-PID=$(sudo lsof -t -i:${PROXY_INPUT_PORT}) || true
-if [ ! -z "${PID}" ]; then
-  kill -9 "${PID}"
-fi
-
 # Generate new proxy.
 rm -rf ${PROXY_OUTPUT_PATH}
 mkdir -p ${PROXY_OUTPUT_PATH}
@@ -25,3 +19,6 @@ grpc2http \
 
 # Install new proxy.
 make -C "${PROXY_OUTPUT_PATH}" install
+
+# Kill previous proxy instance if exists.
+lsof -t -i:${PROXY_INPUT_PORT} | xargs -r kill || true

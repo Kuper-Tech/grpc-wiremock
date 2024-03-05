@@ -17,7 +17,7 @@ import (
 
 var (
 	osfs        = afero.NewOsFs()
-	emptyCtx    = mock.AnythingOfType("*context.emptyCtx")
+	emptyCtx    = mock.AnythingOfType("context.backgroundCtx")
 	projectPath = filepath.Join(fsutils.CurrentDir(), "../../..")
 	outputPath  = filepath.Join(projectPath, "tests")
 )

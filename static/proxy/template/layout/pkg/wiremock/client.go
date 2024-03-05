@@ -8,9 +8,10 @@ import (
 	"strconv"
 	"time"
 
+	statustocode "grpc-proxy/pkg/status"
+
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
-	statustocode "grpc-proxy/pkg/status"
 )
 
 var client = http.Client{Timeout: time.Second * 3}
@@ -76,7 +77,7 @@ func DoRequestWithStreamSize(request *http.Request) ([]byte, int, error) {
 	return body, streamSize, nil
 }
 
-func doRequest(request *http.Request) (*http.Response, error) {
+func enrichWithMetaData(request *http.Request) *http.Request {
 	if md, ok := metadata.FromIncomingContext(request.Context()); ok {
 		for mdKey, mdValue := range md {
 			if len(mdValue) > 0 {
@@ -88,6 +89,12 @@ func doRequest(request *http.Request) (*http.Response, error) {
 			}
 		}
 	}
+
+	return request
+}
+
+func doRequest(request *http.Request) (*http.Response, error) {
+	request = enrichWithMetaData(request)
 
 	httpResponse, err := client.Do(request)
 	if err != nil {

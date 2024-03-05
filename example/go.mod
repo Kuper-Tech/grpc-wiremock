@@ -1,6 +1,6 @@
 module grpc-proxy
 
-go 1.19
+go 1.21
 
 require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
