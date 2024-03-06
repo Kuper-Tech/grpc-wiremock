@@ -15,3 +15,5 @@ fi
 if ! certgen | logger -t "${ROUTING_CERTS_GEN_HEADER}"; then
   echo "Certificate generating for mock hosts failed. Skip"
 fi
+
+sudo nginx -s reload
