@@ -8,5 +8,5 @@ if ! mockgen first-run \
   --domains-path="${DOMAINS_PATH}" \
   --wiremock-path="${GW_WIREMOCK_PATH}"; then
 
-  echo "Mocks autogen exited with an error. Skip"
+  echo "Mocks autogen failed. Skip"
 fi

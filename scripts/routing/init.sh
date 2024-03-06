@@ -3,12 +3,15 @@
 set -euo pipefail
 
 if ! certgen | logger -t "${ROUTING_CERTS_GEN_HEADER}"; then
-  echo "Certificates generator exited with an error. Skip"
+  echo "Certificate initial generating failed. Skip"
 fi
 
-[ ! -f /var/run/nginx/nginx.pid ] && sudo nginx
+[ "$(ps | grep '[n]ginx')" == "" ] && sudo nginx
 
 if ! confgen | logger -t "${ROUTING_NGINX_GEN_HEADER}"; then
-  echo "Nginx configs generator exited with an error. Skip"
+  echo "Nginx configs generator failed. Skip"
 fi
 
+if ! certgen | logger -t "${ROUTING_CERTS_GEN_HEADER}"; then
+  echo "Certificate generating for mock hosts failed. Skip"
+fi

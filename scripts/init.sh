@@ -30,8 +30,9 @@ sudo chown -R \
 LOG="/var/log/wiremock"
 
 ## remove 'imklog' because no need to monitor kernel events.
-if [ ! -f "/var/run/rsyslogd.pid" ]; then
-    sudo sed -i '/imklog/s/^/#/' /etc/rsyslog.conf && sudo rsyslogd
+
+if [ "$(ps | grep '[r]syslogd')" == "" ]; then
+    sudo sed -i '/^module.*imklog/s/^/#/' /etc/rsyslog.conf && sudo rsyslogd
 fi
 sudo touch "${LOG}" && tail -f ${LOG} &
 
