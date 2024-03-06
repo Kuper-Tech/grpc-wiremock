@@ -18,7 +18,7 @@ var domains = []string{
 
 var commonDomains = []string{
 	"localhost", "mock",
-	"grpc-wiremock", "*.local.sbermarket.tech",
+	"grpc-wiremock",
 }
 
 func (g *certsGen) collectDomains(commonDomains, domains []string) ([]string, error) {
@@ -41,7 +41,7 @@ func (g *certsGen) collectDomains(commonDomains, domains []string) ([]string, er
 
 	for _, domain := range targetDomains {
 		for _, ext := range domains {
-			certDomains = append(certDomains, fmt.Sprintf("%s.%s", domain, ext))
+			certDomains = append(certDomains, domain, fmt.Sprintf("%s.%s", domain, ext))
 		}
 	}
 
