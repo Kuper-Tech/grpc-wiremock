@@ -98,6 +98,11 @@ To develop golang code
         -d '{"uuid": "1234", "message": "foo"}' \
         127.0.0.1:3009 push_sender.PushSender/Notify
     ```
+## Release process
+To release new version
+
+1. Create [new release on github](https://github.com/SberMarket-Tech/grpc-wiremock/releases/new) in semver format, i. e. `v1.1.4`.
+2. [GitHub actions](https://github.com/SberMarket-Tech/grpc-wiremock/actions) will build docker image and upload it to [DockerHub SberMarket-Tech grpc-wiremock](https://hub.docker.com/r/sbermarkettech/grpc-wiremock).
 
 ### License
 **grpc-wiremock** is under the Apache License, Version 2.0. See the LICENSE file for details.

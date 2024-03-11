@@ -108,5 +108,8 @@ RUN chown -R "${USER_UID}:${USER_UID}" ${SUPERVISORD_DIR}
 USER ${USERNAME}
 WORKDIR ${HOME}
 
+LABEL org.opencontainers.image.source="https://github.com/SberMarket-Tech/grpc-wiremock"
+LABEL org.opencontainers.image.description="WireMock for multiple APIs with support of gRPC and HTTP"
+LABEL org.opencontainers.image.licenses="Apache 2.0"
 
 ENTRYPOINT ["/scripts/init.sh"]
