@@ -37,7 +37,6 @@ jobs:
           images: sbermarkettech/grpc-wiremock
           tags: |
             type=semver,pattern={{version}}
-            type=sha
 
       - name: Export env for build-args
         run: |
