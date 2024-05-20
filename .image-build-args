@@ -4,7 +4,7 @@ GOLANG_IMAGE_TAG="1.21.7"
 
 
 WIREMOCK_IMAGE_REPO="docker.io"
-WIREMOCK_IMAGE_NAME="wiremock/wiremock"
-WIREMOCK_IMAGE_TAG="2.32.0-alpine"
+WIREMOCK_IMAGE_NAME="holomekc/wiremock-gui"
+WIREMOCK_IMAGE_TAG="3.6.7-alpine"
 
 # See COPYRIGHT file.
