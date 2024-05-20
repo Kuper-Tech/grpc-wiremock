@@ -1,10 +1,14 @@
 # grpc-wiremock
 
-[Wiremock](https://wiremock.org/docs) is a great way to test your connected services.
-But it has one drawback. And that is support for **proto** contracts.
+**grpc-wiremock** is a tool for mocking server API. It provides
 
-**grpc-wiremock** is designed to solve this problem,
-and also provide a handy *tool for generating mocks*. And their *automatic reloading*. 
+* simultaneous work with **multiple APIs**;
+* mocking of **grpc (protobuf)** API;
+* generating mocks by **proto** and **openapi** files;
+* hot reload on contract changes.
+
+**grpc-wiremock** is based on [Wiremock](https://wiremock.org/docs), so it provides the all its power of matchers.  
+Also it inherites [Wiremock GUI](https://github.com/holomekc/wiremock) made by [holomekc](https://github.com/holomekc).
 
 [Here](docs/comparsion.md) you can compare the functionality with existing solutions.
 
@@ -39,6 +43,12 @@ docker run \
   -v ${CONTRACTS_PATH}:/proto \
   SberMarket-Tech/grpc-wiremock@latest
 ```
+
+To view status and API mocks
+
+* Open Supervisor GUI on http://localhost:9000.
+* Open Wiremock GUI on http://localhost:8000/__admin/webapp
+
 ## Overview
 
 In general, **grpc-wiremock** contains two main components. 
