@@ -30,7 +30,7 @@ type Configuer struct {
 func (c Configuer) GenerateConfig(values configs.Values) error {
 	const templatePath = "proxy-nginx/files/nginx.conf.tpl"
 
-	confView := nginxDomainConfView{Domain: values.Domain, Port: values.Port}
+	confView := nginxDomainConfView{Domain: values.Domain, Port: "8000"}
 
 	content, err := c.Renderer.Substitute(templatePath, &confView)
 	if err != nil {
